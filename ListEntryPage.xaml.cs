@@ -1,25 +1,33 @@
 using Pavel_Denisa_lab7.Models;
+
 namespace Pavel_Denisa_lab7;
 
 public partial class ListEntryPage : ContentPage
 {
-	public ListEntryPage()
-	{
-		InitializeComponent();
-	}
-    async void OnSaveButtonClicked(object sender, EventArgs e)
+    public ListEntryPage()
     {
-        var slist = (ShopList)BindingContext;
-        slist.Date = DateTime.UtcNow;
-        await App.Database.SaveShopListAsync(slist);
-        await Navigation.PopAsync();
+        InitializeComponent();
     }
-    async void OnDeleteButtonClicked(object sender, EventArgs e)
+    protected override async void OnAppearing()
     {
-        var slist = (ShopList)BindingContext;
-        await App.Database.DeleteShopListAsync(slist);
-        await Navigation.PopAsync();
+        base.OnAppearing();
+        listView.ItemsSource = await App.Database.GetShopListsAsync();
     }
-
+    async void OnShopListAddedClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ListPage
+        {
+            BindingContext = new ShopList()
+        });
+    }
+    async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+        if (e.SelectedItem != null)
+        {
+            await Navigation.PushAsync(new ListPage
+            {
+                BindingContext = e.SelectedItem as ShopList
+            });
+        }
+    }
 }
-

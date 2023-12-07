@@ -1,8 +1,10 @@
-﻿using SQLite;
+﻿using System;
+using SQLite;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Pavel_Denisa_lab7.Models;
-
+using System.Linq;
+using System.Text;
 
 namespace Pavel_Denisa_lab7.Data
 {
@@ -40,4 +42,4 @@ namespace Pavel_Denisa_lab7.Data
             return _database.DeleteAsync(slist);
         }
     }
-        }
+}

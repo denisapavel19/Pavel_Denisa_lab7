@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SQLite;
 namespace Pavel_Denisa_lab7.Models
 {
+    
     public class ShopList
     {
         [PrimaryKey, AutoIncrement]
@@ -14,4 +15,5 @@ namespace Pavel_Denisa_lab7.Models
         public string Description { get; set; }
         public DateTime Date { get; set; }
     }
+
 }

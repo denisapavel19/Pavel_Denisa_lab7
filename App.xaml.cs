@@ -1,6 +1,8 @@
 ﻿using System;
 using Pavel_Denisa_lab7.Data;
 using System.IO;
+
+
 namespace Pavel_Denisa_lab7;
 
 public partial class App : Application
@@ -23,7 +25,7 @@ public partial class App : Application
     public App()
     {
         InitializeComponent();
+
         MainPage = new AppShell();
     }
-
 }
